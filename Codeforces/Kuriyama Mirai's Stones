@@ -1,0 +1,37 @@
+#include<iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+// https://codeforces.com/problemset/problem/433/B
+
+int main(){
+int64_t n;
+cin >> n;
+int64_t data[n];
+for(int64_t i= 0;i < n;i++){
+  cin >> data[i];
+}
+int64_t summations[n+1];
+summations[0] = 0;
+for(int64_t i= 0;i < n;i++) summations[i+1] = summations[i] + data[i];
+sort(data,data+n);
+int64_t sorted[n+1];
+sorted[0] = 0;
+for(int64_t i= 0;i < n;i++) sorted[i+1] = sorted[i] + data[i];
+int64_t m;
+int type,l,r;
+cin >> m;
+for(int64_t i= 0;i < m;i++){
+  cin >> type;
+  cin >> l;
+  cin >> r;
+  if(type == 1){
+    cout << summations[r] - summations[l-1] << endl;
+  }
+  else{
+      cout << sorted[r] - sorted[l-1] << endl;
+  }
+}
+return 0;
+}
